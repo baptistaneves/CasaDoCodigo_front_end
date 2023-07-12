@@ -1,0 +1,79 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Usuários</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                    <li class="breadcrumb-item active">Usuários</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items">
+                            <div class="col-6">
+                                <h3 class="card-title">Usuários Cadastrados</h3>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a [routerLink]="['/novo-usuario']" class="btn btn-success"><i
+                                        class="fa fa-plus"></i> Adicionar Novo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>E-mail</th>
+                                    <th>Perfil</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let usuario of usuarios">
+                                    <td>{{usuario.email}}</td>
+                                    <td>{{usuario.perfil}}</td>
+                                    <td class="text-right">
+                                        <a class="btn-sm btn-info" href="javascript:void(0)">
+                                            <span class="fa fa-search"></span>
+                                        </a>&nbsp;
+                                        <a class="btn-sm btn-warning" href="javascript:void(0)">
+                                            <span class="fa fa-pencil-alt"></span>
+                                        </a>&nbsp;
+                                        <a class="btn-sm btn-secondary" href="javascript:void(0)">
+                                            <span class="fa fa-lock"></span>
+                                        </a>&nbsp;
+                                        <a class="btn-sm btn-danger" href="javascript:void(0)" >
+                                            <span class="fa fa-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

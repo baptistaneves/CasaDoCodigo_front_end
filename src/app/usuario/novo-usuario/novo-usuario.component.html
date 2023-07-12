@@ -1,0 +1,84 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Novo usuário</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/admin/usuarios']">Usuários</a></li>
+                    <li class="breadcrumb-item active">Novo usuário</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Novo usuario</h3>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <form class="form-horizontal" (ngSubmit)="adicionar()" [formGroup]="cadastroForm">
+                            <div class="alert alert-danger" *ngIf="errors.length > 0">
+                                <h3>Opa! Alguma coisa não deu certo:</h3>
+                                <ul>
+                                    <li *ngFor="let error of errors">{{ error }}</li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="perfil" class="col-sm-2 col-form-label">Perfil</label>
+                                        <div>
+                                            <select class="form-control" id="perfil" formControlName="perfil" [ngClass]="{'is-invalid': displayMessage['perfil'] }">
+                                                <option [disabled]="true">--Escolha o Perfil--</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="User">User</option>
+                                            </select>
+                                            <span class="text-danger" *ngIf="displayMessage['perfil']">
+                                                <p [innerHTML]="displayMessage['perfil']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                                        <div>
+                                            <input type="email" class="form-control" id="email" placeholder="E-mail (requerido)" formControlName="email" [ngClass]="{'is-invalid': displayMessage['email'] }">
+                                            <span class="text-danger" *ngIf="displayMessage['email']">
+                                                <p [innerHTML]="displayMessage['email']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="senha" class="col-sm-2 col-form-label">Senha</label>
+                                        <div>
+                                            <input type="password" class="form-control" id="senha" placeholder="Senha (requerido)" formControlName="senha" [ngClass]="{'is-invalid': displayMessage['senha'] }">
+                                            <span class="text-danger" *ngIf="displayMessage['senha']">
+                                                <p [innerHTML]="displayMessage['senha']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <a [routerLink]="['/usuarios']" class="btn btn-default">Voltar</a>
+                                <button [disabled]="!cadastroForm.valid"  type="submit" class="btn btn-info ml-2">Salvar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

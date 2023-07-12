@@ -1,0 +1,100 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Categorias</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                    <li class="breadcrumb-item active">Categorias</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items">
+                            <div class="col-6">
+                                <h3 class="card-title">Categorias Cadastradas</h3>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a [routerLink]="['/nova-categoria']" class="btn btn-success"><i
+                                        class="fa fa-plus"></i> Adicionar Nova</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 alert alert-danger my-2" *ngIf="errors.length > 0">
+                                <h5>Opa! Alguma coisa não deu certo:</h5>
+                                <ul>
+                                    <li *ngFor="let error of errors">{{ error }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let categoria of categorias">
+                                    <td>{{categoria.descricao}}</td>
+                                    <td class="text-right">
+                                        <a class="btn-sm btn-info"
+                                            [routerLink]="['/admin/detalhes-categoria/',categoria.id]">
+                                            <span class="fa fa-search"></span>
+                                        </a>&nbsp;
+                                        <a class="btn-sm btn-warning"
+                                            [routerLink]="['/admin/editar-categoria/',categoria.id]">
+                                            <span class="fa fa-pencil-alt"></span>
+                                        </a>&nbsp;
+                                        <a class="btn-sm btn-danger" href="javascript:void(0)" (click)="abrirModal(categoria.id)" data-toggle="modal" data-target="#excluir" >
+                                            <span class="fa fa-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="excluir">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3>Você tem certeza?</h3>
+                    <p>O item selecionado será removido.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" (click)="excluir()" class="btn btn-danger">Confirmar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalExcluir">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

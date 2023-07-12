@@ -25,9 +25,16 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/adminLte/plugins/fontawesome/css/all.min.css",
+              "src/assets/adminLte/dist/css/adminlte.min.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/adminLte/plugins/jquery/jquery.min.js",
+              "src/assets/adminLte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/adminLte/dist/js/adminlte.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

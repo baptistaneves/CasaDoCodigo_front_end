@@ -1,0 +1,106 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Editar Produto</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/produtos']">Produtos</a></li>
+                    <li class="breadcrumb-item active">Editar produto</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Editar produto</h3>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <form class="form-horizontal" (ngSubmit)="editar()" [formGroup]="produtoForm">
+                            <div class="alert alert-danger" *ngIf="errors.length > 0">
+                                <h3>Opa! Alguma coisa não deu certo:</h3>
+                                <ul>
+                                    <li *ngFor="let error of errors">{{ error }}</li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="nome" class="col-sm-2 col-form-label">Titulo</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="titulo" placeholder="Titulo (requerido)" formControlName="titulo" [ngClass]="{'is-invalid': displayMessage['titulo'] }">
+                                            <span class="text-danger" *ngIf="displayMessage['titulo']">
+                                                <p [innerHTML]="displayMessage['titulo']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="categoria" class="col-sm-4 col-form-label">Categoria</label>
+                                        <div>
+                                            <select class="form-control" id="categoria" formControlName="categoriaId" [ngClass]="{'is-invalid': displayMessage['categoriaId'] }">
+                                                <option *ngFor="let categoria of categorias" value="{{categoria.id}}">{{categoria.descricao}}</option>
+                                            </select>                                           
+                                             <span class="text-danger" *ngIf="displayMessage['categoriaId']">
+                                                <p [innerHTML]="displayMessage['categoriaId']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="descricao" class="col-sm-4 col-form-label">Descrição</label>
+                                        <div>
+                                            <textarea class="form-control" rows="3" placeholder="Descrição ..." formControlName="descricao" [ngClass]="{'is-invalid': displayMessage['descricao'] }"></textarea>
+                                            <span class="text-danger" *ngIf="displayMessage['descricao']">
+                                                <p [innerHTML]="displayMessage['descricao']"></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">                                
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" accept="image/jpeg,image/png" class="custom-file-input" id="urlImagemPrincipal" formControlName="urlImagemPrincipal" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': displayMessage['urlImagemPrincipal'] }">
+                                            <label class="custom-file-label" for="imagem">Selecione a imagem</label>
+                                            <span *ngIf='imagemNome'><br>{{ imagemNome }}<br></span>
+                                            <span class="text-danger" *ngIf="displayMessage['imagem']">
+                                                <p [innerHTML]="displayMessage['imagem']"></p>
+                                            </span>
+                                        </div>
+                                        <div *ngIf='imagemNome' class="row my-2">
+                                            <div class="col col-md-6">
+                                                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="250" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                                                    [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+                                                    (loadImageFailed)="loadImageFailed()"></image-cropper>
+                                            </div>
+                                            <div class="col col-md-6">
+                                                <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid #ddd' : 'none'" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <a [routerLink]="['/produtos']" class="btn btn-default">Voltar</a>
+                                <button [disabled]="!produtoForm.valid"  type="submit" class="btn btn-info ml-2">Salvar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

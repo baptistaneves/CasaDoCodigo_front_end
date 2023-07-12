@@ -1,0 +1,63 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Visualizar usuário</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/admin/usuarios']">Usuários</a></li>
+                    <li class="breadcrumb-item active">Visualizar usuário</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Visualizar usuário</h3>
+                    </div>
+
+                    <div class="card-body p-0">
+                        <form class="form-horizontal" [formGroup]="usuarioForm">
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="perfil" class="col-sm-2 col-form-label">Perfil</label>
+                                        <div>
+                                            <select class="form-control" id="perfil" formControlName="perfil">
+                                                <option [disabled]="true">--Escolha o Perfil--</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Entregador">Entregador</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                                        <div>
+                                            <input type="email" class="form-control" id="email" placeholder="E-mail (requerido)" formControlName="email">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <a [routerLink]="['/usuarios']" class="btn btn-default">Voltar</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
